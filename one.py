@@ -3,7 +3,7 @@ import requests
 API_KEY = 'f5857f5577a6fa59271adbef5ecf7b10'
 BASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
 
-def get_weather_data(city):
+def weather_data(city):
     params = {
         'q': city,
         'appid': API_KEY,
@@ -17,7 +17,7 @@ def get_weather_data(city):
         print(f"Error: {response.json().get('message', 'Unknown error')}")
         return None
 
-def get_user_option():
+def user_option():
     print("1. Get weather")
     print("2. Get Wind Speed")
     print("3. Get Pressure")
@@ -26,7 +26,7 @@ def get_user_option():
 
 def main():
     while True:
-        option = get_user_option()
+        option = user_option()
 
         if option == 0:
             print("Terminating the program.")
@@ -35,7 +35,7 @@ def main():
         elif option in [1, 2, 3]:
             city = input("Enter the city name: ")
 
-            weather_data = get_weather_data(city)
+            weather_data = weather_data(city)
             if weather_data is not None:
                 if option == 1:
                     temp, _, _ = weather_data
